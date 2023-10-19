@@ -75,6 +75,7 @@ export const loginUser = async (req, res) => {
         message: "Password does not match"
       });
     }
+
     sendToken(200, user, res)
 
   } catch (error) {

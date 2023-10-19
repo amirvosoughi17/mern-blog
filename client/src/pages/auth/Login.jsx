@@ -33,6 +33,7 @@ const Login = () => {
       const data = await res.json();
       console.log(data)
       if (data.success === false) {
+        alert(data.message)
         dispatch(signInFailure(data.message));
         return;
     }
@@ -43,9 +44,7 @@ const Login = () => {
       setError(error.message)
     }
   }
-
   console.log(formData)
-
   return (
     <div className='login-container'>
       <form onSubmit={handleSubmit}>
@@ -59,12 +58,10 @@ const Login = () => {
           <input placeholder=' Password' required type='password'  id='password' onChange={handleChange} />
         </div>
         <div className="form-footer">
-
            <button>Log in</button>
            <p className='go-register'>Do You Have a Account ? <Link to="/register">register</Link></p>
         </div>
         {error && <p className='form-error'>{error}</p>}
-
       </form>
     </div>
   )
