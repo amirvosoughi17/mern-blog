@@ -3,7 +3,6 @@ import { Link , useNavigate } from 'react-router-dom'
 import { useState } from 'react'
 
 
-
 const Register = () => {
   const [formData , setFormData] = useState({});
   const [error , setError] = useState(null);
@@ -20,7 +19,7 @@ const Register = () => {
     e.preventDefault();
     try {
       setLoading(true);
-      const res = await fetch('/api/auth/signup', {
+      const res = await fetch('http://localhost:4000/api/v1/auth/register', {
         method: 'POST',
         headers: {
           'Content-type': 'application/json'
@@ -52,15 +51,15 @@ const Register = () => {
         <h1>Register</h1>
         <div className="input-group">
           <label>Username</label>
-          <input placeholder='Username' required type='text' id='username' onChange={handleChange}  />
+          <input placeholder='Username'  required type='text' id='name' onChange={handleChange}  />
         </div>
         <div className="input-group">
           <label>Email</label>
-          <input placeholder='Email' required type='email' id='email' onChange={handleChange}  />
+          <input placeholder='Email'  required type='email' id='email' onChange={handleChange}  />
         </div>
         <div className="input-group">
           <label>Password</label>
-          <input placeholder=' Password' required type='password'  id='password' onChange={handleChange} />
+          <input placeholder=' Password'  required type='password'  id='password' onChange={handleChange} />
         </div>
         <div className="form-footer">
 
