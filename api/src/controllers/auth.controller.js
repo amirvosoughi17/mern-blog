@@ -1,6 +1,7 @@
 import User from "../models/user.model.js"
 import { sendToken } from "../utils/JWTToken.js";
 import { sendEmail } from "../utils/sendEmail.js";
+import avatar from 'gravatar';
 
 export const registerUser = async (req, res) => {
   // give the data from  request
@@ -27,14 +28,15 @@ export const registerUser = async (req, res) => {
       message: "Password must be more than 4 characters"
     })
   }
+  const avatarUrl = avatar.url(email);
   try {
     //  Create new user after validation
     const user = await User.create({
       name,
       email,
-      password
+      password,
+      avatar: avatarUrl
     });
-
     sendEmail({
       email: user.email,
       subject: "Welcome...",
@@ -85,7 +87,6 @@ export const loginUser = async (req, res) => {
     })
   }
 }
-
 export const logout = async (req, res) => {
   try {
     res.cookie("token", null, {

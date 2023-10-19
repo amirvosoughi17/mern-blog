@@ -4,5 +4,5 @@ const router = Router();
 
 router.post('/register', registerUser);
 router.post('/login', loginUser)
-router.get('/logout', logout)
+router.post('/logout', logout)
 export { router as authRoute };
