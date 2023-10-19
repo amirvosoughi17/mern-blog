@@ -1,5 +1,5 @@
-import { urlencoded } from "express";
 import User from "../models/user.model.js"
+import { generateJWT } from "../utils/JWTToken.js";
 
 
 export const registerUser = async (req, res) => {
@@ -34,11 +34,7 @@ export const registerUser = async (req, res) => {
       email,
       password
     });
-    return res.status(201).json({
-      success: true,
-      message: "Register successfully",
-      user
-    })
+    generateJWT(201, user, res)
   } catch (error) {
     return res.status(500).json({
       success: false,
