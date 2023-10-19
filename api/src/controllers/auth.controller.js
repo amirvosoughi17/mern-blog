@@ -1,12 +1,11 @@
 import User from "../models/user.model.js"
-import { generateJWT } from "../utils/JWTToken.js";
-
+import { sendToken } from "../utils/JWTToken.js";
 
 export const registerUser = async (req, res) => {
   // give the data from  request
   const { name, email, password } = req.body;
   //  Check if not empty sended request
-  if (!name && !email && !password) {
+  if (!name || !email || !password) {
     return res.status(400).json({
       success: false,
       message: "All fields are required, Please fill in all fields"
@@ -34,7 +33,44 @@ export const registerUser = async (req, res) => {
       email,
       password
     });
-    generateJWT(201, user, res)
+
+    sendToken(201, user, res);
+
+  } catch (error) {
+    return res.status(500).json({
+      success: false,
+      message: error.message
+    })
+  }
+}
+export const loginUser = async (req, res) => {
+  const { email, password } = req.body;
+  //  Check if not empty sended request
+  if (!email || !password) {
+    return res.status(400).json({
+      success: false,
+      message: "All fields are required, Please fill in all fields"
+    });
+  }
+  try {
+    //  Check user exists
+    const user = await User.findOne({ email });
+    if (!user) {
+      return res.status(400).json({
+        success: false,
+        message: "User not registered in website, Please create an account"
+      })
+    }
+    // Check password is match
+    const isPasswordMatch = await user.comparePasword(password);
+    if (!isPasswordMatch) {
+      return res.status(400).json({
+        success: false,
+        message: "Password does not match"
+      });
+    }
+    sendToken(200, user, res)
+
   } catch (error) {
     return res.status(500).json({
       success: false,

@@ -42,5 +42,10 @@ userSchema.methods.getJWTToken = function () {
     expiresIn: process.env.JWT_EXPIRE
   })
 }
+
+//  Compare password
+userSchema.methods.comparePasword = function (enteredPassword) {
+  return bcrypt.compare(enteredPassword, this.password);
+}
 const User = model("User", userSchema);
 export default User;

@@ -1,7 +1,7 @@
 import jwt from 'jsonwebtoken';
 
 
-export const generateJWT = (statusCode, user, res) => {
+export const sendToken = (statusCode, user, res) => {
   const token = user.getJWTToken();
   const options = {
     expire: new Date(
