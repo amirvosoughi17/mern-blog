@@ -1,5 +1,6 @@
 import User from "../models/user.model.js"
 import { sendToken } from "../utils/JWTToken.js";
+import { sendEmail } from "../utils/sendEmail.js";
 
 export const registerUser = async (req, res) => {
   // give the data from  request
@@ -34,6 +35,11 @@ export const registerUser = async (req, res) => {
       password
     });
 
+    sendEmail({
+      email: user.email,
+      subject: "Welcome...",
+      message: `Hello dear ${user.name}, Welcome to Mern blog website`
+    })
     sendToken(201, user, res);
 
   } catch (error) {
