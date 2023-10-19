@@ -12,7 +12,7 @@ nav {
 .nav-items {
     display: flex;
     align-items: center;
-    gap: 0.8rem;
+    gap: .8rem;
 }
 
 #nav-item {
@@ -261,4 +261,11 @@ body {
         display: none;
     }
     
+}
+
+
+
+#user-icon {
+  color: #333;
+  margin-bottom: -7px;
 }

@@ -19,11 +19,7 @@ const Register = () => {
     e.preventDefault();
     try {
       setLoading(true);
-<<<<<<< HEAD
       const res = await fetch('http://localhost:4000/api/v1/auth/register', {
-=======
-      const res = await fetch('/api/auth/register', {
->>>>>>> 34703865360399330c5ace5f295ee7dc3bf2e5be
         method: 'POST',
         headers: {
           'Content-type': 'application/json'
@@ -39,7 +35,7 @@ const Register = () => {
       }
       setLoading(false)
       setError(null)
-      navigate('/signin')
+      navigate('/login')
     } catch (error) {
       setLoading(false)
       setError(error.message)

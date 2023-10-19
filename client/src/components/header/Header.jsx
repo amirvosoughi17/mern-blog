@@ -5,6 +5,9 @@ import { useState, useEffect } from "react";
 import { useAnimate, stagger } from "framer-motion";
 import { MenuToggle } from './MenuToggle';
 import { Menu } from './Menu';
+import {BiSolidUserCircle} from 'react-icons/bi'
+import { useSelector } from 'react-redux';
+
 
 function useMenuAnimation(isOpen) {
   const [scope, animate] = useAnimate();
@@ -53,6 +56,7 @@ function useMenuAnimation(isOpen) {
 
 const Header = () => {
   const [isOpen, setIsOpen] = useState(false);
+  const currentUser = useSelector((state) => state.user)
 
   const scope = useMenuAnimation(isOpen);
   return (
@@ -72,7 +76,18 @@ const Header = () => {
             <Link id='nav-lnk'>Contact</Link>
           </div>
           <div className="nav-items">
-            <Link id='nav-item' to='register'>Sign up</Link>
+            <Link id='nav-item' to='register'>
+              {currentUser ? (
+                <Link id='nav-item' to='/'>Your Blogs</Link>
+              ) : "Sign up"}
+              </Link>
+            <Link to='/profile'>
+                {currentUser ?(
+                  <BiSolidUserCircle id='user-icon' size={42} />
+                ) : 
+                 <li className='sm:inline text-slate-700 hover:underline'>Sign in</li>
+                }
+              </Link>
           </div>
         </nav>
     </div>

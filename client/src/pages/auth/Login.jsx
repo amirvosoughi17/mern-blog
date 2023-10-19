@@ -22,7 +22,7 @@ const Login = () => {
     e.preventDefault();
     try{
       dispatch(signInStart());
-      const res = await fetch ('/api/auth/login' ,
+      const res = await fetch ('http://localhost:4000/api/v1/auth/login' ,
       {
         method : 'POST' ,
         headers : {
@@ -60,8 +60,8 @@ const Login = () => {
         </div>
         <div className="form-footer">
 
-           <button>Sign up</button>
-           <p className='go-register'>Do You Have a Account ? <Link to="/login">Login</Link></p>
+           <button>Log in</button>
+           <p className='go-register'>Do You Have a Account ? <Link to="/register">register</Link></p>
         </div>
         {error && <p className='form-error'>{error}</p>}
 
