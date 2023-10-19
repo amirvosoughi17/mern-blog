@@ -70,15 +70,15 @@ const Header = () => {
             <h1 className='Logo'>JoJe</h1>
           </div>
           <div className="nav-lnks">
-            <Link id='nav-lnk'>Home</Link>
-            <Link id='nav-lnk'>Blogs</Link>
+            <Link to='/' id='nav-lnk'>Home</Link>
+            <Link to='profile' id='nav-lnk'>Blogs</Link>
             <Link id='nav-lnk'>Profile</Link>
             <Link id='nav-lnk'>Contact</Link>
           </div>
           <div className="nav-items">
             <Link id='nav-item' to='register'>
               {currentUser ? (
-                <Link id='nav-item' to='/'>Your Blogs</Link>
+                <Link id='nav-item' to='/register'>Log Out</Link>
               ) : "Sign up"}
               </Link>
             <Link to='/profile'>
