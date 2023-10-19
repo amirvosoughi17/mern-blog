@@ -15,10 +15,24 @@ export const showInfo = async (req, res) => {
     })
   }
 }
+// Update user information (update profile)
 export const updateInfo = async (req, res) => {
   const userID = req.params.id;
+  const { name, email } = req.body;
   try {
-    const newInfo = await User.findByIdAndUpdate(userID, );
+    const user = await User.findByIdAndUpdate(userID,
+      {
+        name, email
+      },
+      {
+        new: true,
+        runValidators: true,
+        useFindAndModify: false
+      });
+    return res.status(200).json({
+      success: true,
+      user
+    })
 
   } catch (error) {
     return req.status(500).json({
