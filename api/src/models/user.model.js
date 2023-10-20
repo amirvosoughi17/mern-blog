@@ -24,6 +24,11 @@ const userSchema = new Schema({
   avatar: {
     type: String,
     default: ""
+  },
+  blogs: {
+    type: Schema.Types.ObjectId,
+    ref: "Blog",
+    default: ""
   }
 },
   { timestamps: true }

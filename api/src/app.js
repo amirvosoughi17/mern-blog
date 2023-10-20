@@ -6,6 +6,7 @@ import { userRoute } from './routes/user.route.js';
 import cookieParser from 'cookie-parser';
 
 import cors from 'cors'
+import { blogRoute } from './routes/blog.route.js';
 const app = express()
 
 /** CONFIGURATION ENV */
@@ -28,3 +29,4 @@ app.listen(PORT, () => {
 /** ROUTES */
 app.use('/api/v1/auth', authRoute);
 app.use('/api/v1/user', userRoute);
+app.use('/api/v1/blog', blogRoute)
