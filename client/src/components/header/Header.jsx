@@ -82,7 +82,7 @@ const Header = () => {
               ) : "Sign up"}
               </Link>
             <Link to='/profile'>
-                {currentUser ?(
+                {currentUser ? (
                   <BiSolidUserCircle id='user-icon' size={42} />
                 ) : 
                  <li className='sm:inline text-slate-700 hover:underline'>Sign in</li>
